@@ -44,12 +44,54 @@ catch(Exception e)
 
 using ConceitosBasicos.uteis;
 
-SomaDoisNumeros somaDoisNumeros = new SomaDoisNumeros();
-int result;
-result = somaDoisNumeros.Somar(20, 22);
-Console.WriteLine(result);
+int opcao;
+do
+{
+    Console.WriteLine("[0] Sair");
+    Console.WriteLine("[1] Somar dois números");
+    Console.WriteLine("[2] Converter metros em milímetros");
+    Console.WriteLine("[3] Calcular Aumento");
+    Console.Write("Escolha a opção desejada: ");
+    opcao = Convert.ToInt32(Console.ReadLine());
 
-double milimetros = MetrosMilimetros.Converter(1.8);
-Console.WriteLine(milimetros);
+    switch (opcao)
+    {
+        case 0:
+            break;
+        case 1:
+            SomaDoisNumeros somaDoisNumeros = new SomaDoisNumeros();
+            int result;
+            Console.Write("Informe o primeiro valor: ");
+            int valor1 = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Informe o segundo valor: ");
+            int valor2 = Convert.ToInt32(Console.ReadLine());
+            result = somaDoisNumeros.Somar(valor1, valor2);
+            Console.WriteLine("A soma dos número {0} e {1} é {2}", valor1, valor2, result);
+            break;
+        case 2:
+            Console.Write("Informe o valor em metros: ");
+            double metros = Convert.ToDouble(Console.ReadLine());
+            double milimetros = MetrosMilimetros.Converter(1.8);
+            Console.WriteLine($"{metros}m corresponde a {milimetros}mm");
+            break;
+        case 3:
+            CalculaAumento calculaAumento = new CalculaAumento();
+            Console.Write("Informe o salário: ");
+            decimal salario = Convert.ToDecimal(Console.ReadLine());
+            Console.Write("Informe o percentual de aumento: ");
+            float percentual = float.Parse(Console.ReadLine());
+            decimal valorAumento = calculaAumento.Calcular(salario, percentual);
+            Console.WriteLine($"Para o salário {salario:c2}, dado o percentual {percentual}, o valor do aumento será de {valorAumento} resultando no novo salário de {(salario + valorAumento):c2}");
+            break;
+        default:
+            Console.WriteLine("Opção inválida!");
+            break;
+    }
+} while (opcao != 0);
+
+
+
+
+
 
 
